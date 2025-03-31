@@ -1,0 +1,128 @@
+/*
+ * main.c
+ *
+ *  Created on: Mar 23, 2025
+ *      Author: Dell
+ */
+#include "main.h"
+#include"stdio.h"
+#define GPIOD_BASE_ADDR  0x40020C00
+#define GPIOA_BASE_ADDR  0x40020000
+#define RCC_BASE_ADDR    0x40023800
+
+uint32_t* RCC_AHB1ENR  = (uint32_t*)(RCC_BASE_ADDR + 0x30);
+uint32_t* GPIOD_MODER  = (uint32_t*)(GPIOD_BASE_ADDR + 0x00);
+uint32_t* GPIOD_BSRR   = (uint32_t*)(GPIOD_BASE_ADDR + 0x18);
+uint32_t* GPIOA_IDR    = (uint32_t*)(GPIOA_BASE_ADDR + 0x10);
+uint32_t* GPIOA_PUPDR  = (uint32_t*)(GPIOA_BASE_ADDR + 0x0C);
+uint8_t   led_state = 0;
+
+
+void LedInit()
+{
+	__HAL_RCC_GPIOD_CLK_ENABLE();
+	uint32_t* GPIOD_MODER = (uint32_t*)(GPIOD_BASE_ADDR + 0x00);
+	*GPIOD_MODER &= ~(0b11111111 << 24);
+	*GPIOD_MODER |=  (0b01010101 << 24);
+}
+
+
+void ButtonInit()
+{
+	__HAL_RCC_GPIOA_CLK_ENABLE();
+	uint32_t* GPIOA_MODER = (uint32_t*)(GPIOA_BASE_ADDR + 0x00);
+	*GPIOA_MODER &= ~(0b11 << 0);
+    *GPIOA_PUPDR &= ~(0b11 << 0);  // Xóa cấu hình cũ của Pull-up/Pull-down
+    *GPIOA_PUPDR |=  (0b10 << 0);  // Kích hoạt Pull-down (01)
+}
+uint8_t ButtonRead()
+{
+    if (*GPIOA_IDR & (1 << 0))  // Kiểm tra bit 0 của GPIOA_IDR
+    {
+        return 1;  // PA0 ở mức cao (Không nhấn)
+    }
+    else
+    {
+        return 0;  // PA0 ở mức thấp (Nhấn)
+    }
+}
+typedef enum
+{
+	Green_LED = 12,
+};
+void LedCtrl(int led)
+{
+
+	*GPIOD_BSRR |= (0b1111<<28); //reset led
+	switch(led)
+	{
+		case 1:  *GPIOD_BSRR |=(0b1<<12); break;
+		case 2:	 *GPIOD_BSRR |=(0b1<<13); break;
+		case 3:  *GPIOD_BSRR |=(0b1<<14); break;
+		case 4:  *GPIOD_BSRR |=(0b1<<15); break;
+		case 5: //bat 4 led theo thu tu
+		{
+			uint8_t run=1;
+
+			while(run)
+			{
+				*GPIOD_BSRR |= (0b1<<12);
+				HAL_Delay(500);
+				*GPIOD_BSRR |= (0b1<<28);
+
+				*GPIOD_BSRR |= (0b1<<13);
+				HAL_Delay(500);
+				*GPIOD_BSRR |= (0b1<<29);
+
+				*GPIOD_BSRR |= (0b1<<14);
+				HAL_Delay(500);
+				*GPIOD_BSRR |= (0b1<<30);
+
+				*GPIOD_BSRR |= (0b1<<15);
+				HAL_Delay(500);
+				*GPIOD_BSRR |= (0b1<<31);
+
+
+				if (ButtonRead() == 1)
+				{
+					HAL_Delay(50);  // Chống dội phím
+					if (ButtonRead() == 1)
+					{
+						run = 0;  // Dừng hiệu ứng LED
+						led_state = 0;  // Quay về trạng thái ban đầu
+						while (ButtonRead()==1);
+						break;
+
+					}
+				}
+			}
+			break;
+		}
+		default: break;
+	}
+}
+
+int main()
+{
+	HAL_Init();
+	LedInit();
+	ButtonInit();
+	uint8_t lastButton_state = 0;
+	while(1)
+    {
+		uint8_t button_state = ButtonRead();
+		if (lastButton_state == 0 && button_state==1)  // Nhan nut pa0
+        {
+			HAL_Delay(50);
+			if (ButtonRead()==1)
+			{
+				led_state++;
+				if (led_state>5) led_state=0;
+				LedCtrl(led_state);
+			}
+		}
+		lastButton_state=button_state;
+
+    }
+	return 0;
+}
