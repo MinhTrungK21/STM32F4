@@ -1,28 +1,62 @@
-10:51:02 **** Incremental Build of configuration Debug for project Interrupt ****
+22:18:58 **** Incremental Build of configuration Debug for project boot ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "Interrupt.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\IMIC\Nhung1\Code\Interrupt\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Interrupt.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: Interrupt.elf
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:100:28: warning: initialization of 'uint32_t *' {aka 'long unsigned int *'} from 'long unsigned int' makes pointer from integer without a cast [-Wint-conversion]
+  100 |           uint32_t* VTOR = (uint32_t)0xE000ED08;
+      |                            ^
+../Core/Src/main.c:104:20: warning: assignment to 'uint32_t *' {aka 'long unsigned int *'} from 'int' makes pointer from integer without a cast [-Wint-conversion]
+  104 |                   p=0x08040004;
+      |                    ^
+../Core/Src/main.c:110:20: warning: assignment to 'uint32_t *' {aka 'long unsigned int *'} from 'int' makes pointer from integer without a cast [-Wint-conversion]
+  110 |                   p=0x08060004;
+      |                    ^
+../Core/Src/main.c:113:27: warning: assignment to 'void (*)()' from 'uint32_t' {aka 'long unsigned int'} makes pointer from integer without a cast [-Wint-conversion]
+  113 |           function_pointer=*p;
+      |                           ^
+arm-none-eabi-gcc -o "boot.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\IMIC\Nhung1\Code\boot\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="boot.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: boot.elf
  
-arm-none-eabi-size  Interrupt.elf 
-arm-none-eabi-objdump -h -S Interrupt.elf  > "Interrupt.list"
+arm-none-eabi-size  boot.elf 
+arm-none-eabi-objdump -h -S boot.elf  > "boot.list"
    text	   data	    bss	    dec	    hex	filename
-   2120	     40	   1568	   3728	    e90	Interrupt.elf
+   5684	     12	   1572	   7268	   1c64	boot.elf
 Finished building: default.size.stdout
  
-Finished building: Interrupt.list
+Finished building: boot.list
  
-10:51:09 **** Incremental Build of configuration Debug for project Interrupt ****
+22:19:22 **** Incremental Build of configuration Debug for project app1 ****
 make -j16 all 
-arm-none-eabi-size  Interrupt.elf 
+arm-none-eabi-size  app1.elf 
    text	   data	    bss	    dec	    hex	filename
-   2120	     40	   1568	   3728	    e90	Interrupt.elf
+   5740	     12	   1572	   7324	   1c9c	app1.elf
 Finished building: default.size.stdout
  
-10:51:21 **** Incremental Build of configuration Debug for project Interrupt ****
+22:19:22 **** Incremental Build of configuration Debug for project app2 ****
 make -j16 all 
-arm-none-eabi-size  Interrupt.elf 
+arm-none-eabi-size  app2.elf 
    text	   data	    bss	    dec	    hex	filename
-   2120	     40	   1568	   3728	    e90	Interrupt.elf
+   5740	     12	   1572	   7324	   1c9c	app2.elf
+Finished building: default.size.stdout
+ 
+22:19:23 **** Incremental Build of configuration Debug for project boot ****
+make -j16 all 
+arm-none-eabi-size  boot.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5684	     12	   1572	   7268	   1c64	boot.elf
+Finished building: default.size.stdout
+ 
+22:19:40 **** Incremental Build of configuration Debug for project boot ****
+make -j16 all 
+arm-none-eabi-size  boot.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5684	     12	   1572	   7268	   1c64	boot.elf
+Finished building: default.size.stdout
+ 
+22:20:01 **** Incremental Build of configuration Debug for project boot ****
+make -j16 all 
+arm-none-eabi-size  boot.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5684	     12	   1572	   7268	   1c64	boot.elf
 Finished building: default.size.stdout
  
