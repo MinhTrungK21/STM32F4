@@ -1,0 +1,6 @@
+#include"main.h"
+#include"stdio.h"
+#include"string.h"
+#define GPIOB_BASE_ADDR 0x40020400
+uint32_t* GPIOB_MODER = (uint32_t*)(GPIOB_BASE_ADDR);
+

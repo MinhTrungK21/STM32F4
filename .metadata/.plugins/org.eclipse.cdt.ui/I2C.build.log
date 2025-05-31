@@ -1,10 +1,25 @@
-13:10:26 **** Incremental Build of configuration Debug for project I2C ****
+22:35:50 **** Incremental Build of configuration Debug for project I2C ****
 make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'I2C_Write':
+../Core/Src/main.c:51:18: warning: unused variable 'temp' [-Wunused-variable]
+   51 |         uint32_t temp = *I2C_SR2;
+      |                  ^~~~
+../Core/Src/main.c: In function 'I2C_Read':
+../Core/Src/main.c:77:18: warning: variable 'temp' set but not used [-Wunused-but-set-variable]
+   77 |         uint32_t temp = *I2C_SR2;
+      |                  ^~~~
+arm-none-eabi-gcc -o "I2C.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\IMIC\Nhung1\Code\I2C\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: I2C.elf
+ 
 arm-none-eabi-size  I2C.elf 
+arm-none-eabi-objdump -h -S I2C.elf  > "I2C.list"
    text	   data	    bss	    dec	    hex	filename
-  10284	     12	   1660	  11956	   2eb4	I2C.elf
+   2512	     48	   1576	   4136	   1028	I2C.elf
 Finished building: default.size.stdout
  
+Finished building: I2C.list
+ 
 
-13:10:26 Build Finished. 0 errors, 0 warnings. (took 205ms)
+22:35:51 Build Finished. 0 errors, 2 warnings. (took 712ms)
 

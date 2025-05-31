@@ -1,136 +1,69 @@
-20:07:43 **** Incremental Build of configuration Debug for project UART ****
-make -j16 all 
-arm-none-eabi-size  UART.elf 
-   text	   data	    bss	    dec	    hex	filename
-   2388	     40	   1568	   3996	    f9c	UART.elf
-Finished building: default.size.stdout
- 
-20:09:09 **** Incremental Build of configuration Debug for project UART ****
-make -j16 all 
-arm-none-eabi-size  UART.elf 
-   text	   data	    bss	    dec	    hex	filename
-   2388	     40	   1568	   3996	    f9c	UART.elf
-Finished building: default.size.stdout
- 
-20:13:33 **** Incremental Build of configuration Debug for project UART ****
+22:31:02 **** Incremental Build of configuration Debug for project I2C ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "UART.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\IMIC\Nhung1\Code\UART\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: UART.elf
- 
-arm-none-eabi-size  UART.elf 
-arm-none-eabi-objdump -h -S UART.elf  > "UART.list"
-   text	   data	    bss	    dec	    hex	filename
-   2388	     40	   1568	   3996	    f9c	UART.elf
-Finished building: default.size.stdout
- 
-Finished building: UART.list
- 
-20:17:05 **** Incremental Build of configuration Debug for project UART ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'I2C_Write':
+../Core/Src/main.c:51:18: warning: unused variable 'temp' [-Wunused-variable]
+   51 |         uint32_t temp = *I2C_SR2;
+      |                  ^~~~
+../Core/Src/main.c: In function 'I2C_Read':
+../Core/Src/main.c:77:18: warning: variable 'temp' set but not used [-Wunused-but-set-variable]
+   77 |         uint32_t temp = *I2C_SR2;
+      |                  ^~~~
 ../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:147:31: warning: multi-character character constant [-Wmultichar]
-  147 |                 UART_Transmit('100');
-      |                               ^~~~~
-../Core/Src/main.c:147:31: warning: unsigned conversion from 'int' to 'uint8_t' {aka 'unsigned char'} changes value from '3223600' to '48' [-Woverflow]
-arm-none-eabi-gcc -o "UART.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\IMIC\Nhung1\Code\UART\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: UART.elf
+../Core/Src/main.c:120:13: warning: variable 'accel_x' set but not used [-Wunused-but-set-variable]
+  120 |     int16_t accel_x;
+      |             ^~~~~~~
+arm-none-eabi-gcc -o "I2C.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\IMIC\Nhung1\Code\I2C\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: I2C.elf
  
-arm-none-eabi-size  UART.elf 
-arm-none-eabi-objdump -h -S UART.elf  > "UART.list"
+arm-none-eabi-size  I2C.elf 
+arm-none-eabi-objdump -h -S I2C.elf  > "I2C.list"
    text	   data	    bss	    dec	    hex	filename
-   2388	     40	   1568	   3996	    f9c	UART.elf
+   2504	     48	   1568	   4120	   1018	I2C.elf
 Finished building: default.size.stdout
  
-Finished building: UART.list
+Finished building: I2C.list
  
-20:17:20 **** Incremental Build of configuration Debug for project UART ****
+22:31:07 **** Incremental Build of configuration Debug for project I2C ****
 make -j16 all 
-arm-none-eabi-size  UART.elf 
+arm-none-eabi-size  I2C.elf 
    text	   data	    bss	    dec	    hex	filename
-   2388	     40	   1568	   3996	    f9c	UART.elf
+   2504	     48	   1568	   4120	   1018	I2C.elf
 Finished building: default.size.stdout
  
-20:19:28 **** Incremental Build of configuration Debug for project UART ****
+22:31:43 **** Incremental Build of configuration Debug for project I2C ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:148:31: warning: multi-character character constant [-Wmultichar]
-  148 |                 UART_Transmit('100');
-      |                               ^~~~~
-../Core/Src/main.c:148:31: warning: unsigned conversion from 'int' to 'uint8_t' {aka 'unsigned char'} changes value from '3223600' to '48' [-Woverflow]
-arm-none-eabi-gcc -o "UART.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\IMIC\Nhung1\Code\UART\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: UART.elf
- 
-arm-none-eabi-size  UART.elf 
-arm-none-eabi-objdump -h -S UART.elf  > "UART.list"
+arm-none-eabi-size  I2C.elf 
    text	   data	    bss	    dec	    hex	filename
-   2384	     40	   1568	   3992	    f98	UART.elf
+   2504	     48	   1568	   4120	   1018	I2C.elf
 Finished building: default.size.stdout
  
-Finished building: UART.list
+22:34:47 **** Incremental Build of configuration Debug for project I2C ****
+make -j16 all 
+arm-none-eabi-size  I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+   2504	     48	   1568	   4120	   1018	I2C.elf
+Finished building: default.size.stdout
  
-20:20:08 **** Incremental Build of configuration Debug for project UART ****
+22:35:50 **** Incremental Build of configuration Debug for project I2C ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "UART.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\IMIC\Nhung1\Code\UART\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: UART.elf
+../Core/Src/main.c: In function 'I2C_Write':
+../Core/Src/main.c:51:18: warning: unused variable 'temp' [-Wunused-variable]
+   51 |         uint32_t temp = *I2C_SR2;
+      |                  ^~~~
+../Core/Src/main.c: In function 'I2C_Read':
+../Core/Src/main.c:77:18: warning: variable 'temp' set but not used [-Wunused-but-set-variable]
+   77 |         uint32_t temp = *I2C_SR2;
+      |                  ^~~~
+arm-none-eabi-gcc -o "I2C.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\IMIC\Nhung1\Code\I2C\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: I2C.elf
  
-arm-none-eabi-size  UART.elf 
-arm-none-eabi-objdump -h -S UART.elf  > "UART.list"
+arm-none-eabi-size  I2C.elf 
+arm-none-eabi-objdump -h -S I2C.elf  > "I2C.list"
    text	   data	    bss	    dec	    hex	filename
-   2384	     40	   1568	   3992	    f98	UART.elf
+   2512	     48	   1576	   4136	   1028	I2C.elf
 Finished building: default.size.stdout
  
-Finished building: UART.list
- 
-20:26:08 **** Incremental Build of configuration Debug for project UART ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'UART_Receive':
-../Core/Src/main.c:146:16: warning: returning 'uint32_t *' {aka 'long unsigned int *'} from a function with return type 'char' makes integer from pointer without a cast [-Wint-conversion]
-  146 |         return DR;
-      |                ^~
-../Core/Src/main.c:145:14: warning: unused variable 'data' [-Wunused-variable]
-  145 |         char data=*DR;
-      |              ^~~~
-arm-none-eabi-gcc -o "UART.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\IMIC\Nhung1\Code\UART\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: UART.elf
- 
-arm-none-eabi-size  UART.elf 
-arm-none-eabi-objdump -h -S UART.elf  > "UART.list"
-   text	   data	    bss	    dec	    hex	filename
-   2256	     40	   1568	   3864	    f18	UART.elf
-Finished building: default.size.stdout
- 
-Finished building: UART.list
- 
-20:30:59 **** Incremental Build of configuration Debug for project UART ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "UART.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\IMIC\Nhung1\Code\UART\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: UART.elf
- 
-arm-none-eabi-size  UART.elf 
-arm-none-eabi-objdump -h -S UART.elf  > "UART.list"
-   text	   data	    bss	    dec	    hex	filename
-   2336	     40	   1568	   3944	    f68	UART.elf
-Finished building: default.size.stdout
- 
-Finished building: UART.list
- 
-20:31:47 **** Incremental Build of configuration Debug for project UART ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "UART.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\IMIC\Nhung1\Code\UART\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: UART.elf
- 
-arm-none-eabi-size  UART.elf 
-arm-none-eabi-objdump -h -S UART.elf  > "UART.list"
-   text	   data	    bss	    dec	    hex	filename
-   2440	     40	   1568	   4048	    fd0	UART.elf
-Finished building: default.size.stdout
- 
-Finished building: UART.list
+Finished building: I2C.list
  
